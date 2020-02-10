@@ -1,0 +1,10 @@
+---
+title: Reddit's "Hot" posts!
+---
+
+<h2>{{ title | safe }}</h2>
+
+{% for item in reddit_hot.data.children %}
+  {%- set data = item.data -%}
+  <p>[{{ data.subreddit_name_prefixed }}] <a href="{{ data.url | safe }}" target="_blank" rel="noopener noreferrer">{{ data.title }}</a>{% if data.over_18 %} <strong>(18+)</strong>{% endif %} <small>{{ data.created_utc | date }}</small></p>
+{% endfor %}
